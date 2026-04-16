@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template, Context, loader
+
 
 def saludo(request):
     return HttpResponse("Hola mundo!!!")
@@ -25,4 +28,46 @@ def prueba_template(request):
 
     response = template.render(contexto)
 
+    return HttpResponse(response)
+
+
+def prueba_contexto(request):
+
+    file_template = open("/home/pablo/Documents/coderhouse/python-95610/python_comision_95610/proyecto/coder/templates/index.html")
+
+    template = Template(file_template.read())
+    # print("fecha y hora:", datetime.now())
+    
+    datos_template = {
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "fecha_hora": datetime.now(),
+        "productos": {
+            "televisor": 2000,
+            "heladera": 5000,
+        }
+    }
+    
+    contexto = Context(datos_template)
+
+    response = template.render(contexto)
+
+    return HttpResponse(response)
+
+
+def prueba_loader(request):
+
+    template = loader.get_template("index.html")
+
+    datos_template = {
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "fecha_hora": datetime.now(),
+        "productos": {
+            "televisor": 90000,
+            "heladera": 80000,
+        }
+    }
+
+    response = template.render(datos_template)
     return HttpResponse(response)
