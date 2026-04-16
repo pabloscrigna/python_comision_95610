@@ -17,7 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from coder.view import saludo, segunda_vista, saluda_nombre, prueba_template
+from coder.view import (
+    saludo,
+    segunda_vista,
+    saluda_nombre,
+    prueba_template,
+    prueba_contexto,
+    prueba_loader,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,4 +32,6 @@ urlpatterns = [
     path("segunda/", segunda_vista),
     path("saluda/<nombre>", saluda_nombre),
     path("template/", prueba_template),
+    path("template-contexto/", prueba_contexto),
+    path("template-loader/", prueba_loader),
 ]
