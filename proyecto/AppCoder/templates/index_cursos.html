@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cursos</h1>
+
+    {% if cursos %}
+        {% for curso in cursos %}
+            <p>{{curso}}</p>
+        {% endfor %}    
+    {% else %}
+        <p>No hay cursos disponibles</p>
+    {% endif %}
+</body>
+</html>
