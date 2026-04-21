@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+from AppCoder.models import Curso
+
+
+def cursos(request):
+
+    cursos = Curso.objects.all()
+    return render(request, "index_cursos.html", {"cursos": cursos})
+
