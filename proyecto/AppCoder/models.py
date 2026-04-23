@@ -16,6 +16,9 @@ class Entregable(models.Model):
     fecha = models.DateField()
     entregado = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.nombre}"
+
 
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=30, null=False, blank=False)
@@ -35,4 +38,4 @@ class Profesor(models.Model):
     profesion = models.CharField(max_length=30, null=False, blank=False)
 
     def __str__(self):
-        return f"estudiante: {self.apellido}, {self.nombre}"
+        return f"profesor: {self.apellido}, {self.nombre}"
