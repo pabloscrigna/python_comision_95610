@@ -6,12 +6,33 @@
         <h3 style="color:white;">CURSOS</h3>
 
         {% if cursos %}
-            {% for curso in cursos %}
-                <p style="color: aliceblue;">{{curso.nombre}} ---- {{curso.camada}}</p>
-            {% endfor %}    
+        <table style="width: 100%; border-collapse: collapse; color: white;">
+            <thead>
+                <tr style="border-bottom: 1px solid white;">
+                    <th style="text-align:left; padding: 8px;">Nombre</th>
+                    <th style="text-align:left; padding: 8px;">Camada</th>
+                    <th style="text-align:left; padding: 8px;">Modalidad</th>
+                    <th style="text-align:left; padding: 8px;">Calificacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <td style="padding: 8px;">{{ curso.nombre }}</td>
+                        <td style="padding: 8px;">{{ curso.camada }}</td>
+                        <td style="padding: 8px;">{{ curso.get_modalidad_display }}</td>
+                        <td style="padding: 8px;">{{ curso.calificacion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>        
         {% else %}
             <p>No hay cursos disponibles</p>
         {% endif %}
+
+        <br>
+        <br>
+        <a href="{% url 'crear_curso' %}" style="color: white;">Crear curso</a>
 
     {% endblock %}
 

@@ -37,5 +37,4 @@ urlpatterns = [
     # path("template-loader/", prueba_loader),
     # path("cursos/", cursos)
     path("app-coder/", include("AppCoder.urls"))
-    
 ]

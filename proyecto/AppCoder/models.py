@@ -3,8 +3,19 @@ from django.db import models
 
 # DB --> Tabla Curso
 class Curso(models.Model):
+    class Modalidad(models.TextChoices):
+        ONLINE = 'ONL', 'Online'
+        PRESENCIAL = 'PRE', 'Presencial'
+        HIBRIDO = 'HIB', 'Hibrido'
+
     nombre = models.CharField(max_length=20)
     camada = models.IntegerField()
+    modalidad = models.CharField(
+        max_length=3,
+        choices=Modalidad.choices,
+        default=Modalidad.PRESENCIAL
+    )
+    calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0)
 
     def __str__(self):
         return f"{self.nombre} -- {self.camada}"
@@ -36,6 +47,11 @@ class Profesor(models.Model):
     email = models.EmailField(unique=True, null=False, blank=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     profesion = models.CharField(max_length=30, null=False, blank=False)
+
+    class Meta:
+        verbose_name = "Profesor"
+        verbose_name_plural = "Profesores"
+        ordering = ['-fecha_creacion']
 
     def __str__(self):
         return f"profesor: {self.apellido}, {self.nombre}"
