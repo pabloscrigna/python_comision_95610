@@ -22,6 +22,9 @@
                         <td style="padding: 8px;">{{ curso.camada }}</td>
                         <td style="padding: 8px;">{{ curso.get_modalidad_display }}</td>
                         <td style="padding: 8px;">{{ curso.calificacion }}</td>
+                        <td style="padding: 8px;"><a href="{% url 'editar_curso' curso.id%}" class="btn btn-warning btn-sm">Editar</a></td>
+                        <td style="padding: 8px;"><a href="{% url 'eliminar_curso' curso.id%}" class="btn btn-danger btn-sm">Eliminar</a></td>
+                        <td style="padding: 8px;"><a href="{% url 'ver_curso' curso.id%}" class="btn btn-info btn-sm">Ver</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
