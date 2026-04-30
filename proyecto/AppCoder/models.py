@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # DB --> Tabla Curso
@@ -9,7 +10,10 @@ class Curso(models.Model):
         HIBRIDO = 'HIB', 'Hibrido'
 
     nombre = models.CharField(max_length=20)
-    camada = models.IntegerField()
+    camada = models.IntegerField(validators=[
+        MinValueValidator(1),
+        MaxValueValidator(1000000)
+    ])
     modalidad = models.CharField(
         max_length=3,
         choices=Modalidad.choices,
