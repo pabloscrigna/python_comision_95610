@@ -3,12 +3,6 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.template import Template, Context, loader
 
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
-
-from django.shortcuts import render
-
-
 
 def saludo(request):
     return HttpResponse("Hola mundo!!!")
@@ -77,26 +71,3 @@ def prueba_loader(request):
 
     response = template.render(datos_template)
     return HttpResponse(response)
-
-
-
-def login_request(request):
-    
-    if request.method == 'POST':
-        
-        form = AuthenticationForm(request, data=request.POST)
-
-        if form.is_valid():
-            usuario = form.cleaned_data.get('username') 
-            clave = form.cleaned_data.get('password')
-
-            user = authenticate(username=usuario, password=clave)
-
-            if user:
-                login(request, user)
-                return HttpResponse("Login exitoso!!!!")
-
-    
-    form = AuthenticationForm()
-
-    return render(request, "login.html", {"form": form} )

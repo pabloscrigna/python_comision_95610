@@ -60,11 +60,21 @@
                          <li><a href="#home" class="smoothScroll">Alumnos</a></li>
                          <li><a href="{% url 'profesores' %}" class="smoothScroll">Profesores</a></li>
                          <li><a href="{% url 'cursos' %}" class="smoothScroll">Cursos</a></li>
-                         <li><a href="#contact" class="smoothScroll">Contacto</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#">Login - <span>info@coderhouse.com</span></a></li>
-                    </ul>
+                         <li><a href="{% url 'registrarse'%}" class="smoothScroll">Registrarse</a></li>
+                         {% if user.is_authenticated %}
+                            <li><a href="#">{{ user.username }}</a></li>
+                            <li>
+                                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" style="background:none;border:none;color:white;cursor:pointer;padding:0;">Cerrar sesion</button>
+                                </form>
+                            </li>
+                         {% else %}
+                            <li>
+                                <a href="{% url 'login' %}">Iniciar sesion</a>
+                            </li>
+                         {% endif %}
+                    </ul>                    
                </div>
 
           </div>

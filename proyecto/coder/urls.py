@@ -18,19 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-from coder.view import (
+# from coder.view import (
 #     saludo,
 #     segunda_vista,
 #     saluda_nombre,
 #     prueba_template,
 #     prueba_contexto,
 #     prueba_loader,
-    login_request,
-)
+# )
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("login/", login_request, name="login"),
     # path("saludo/", saludo),
     # path("segunda/", segunda_vista),
     # path("saluda/<nombre>", saluda_nombre),
@@ -38,5 +36,6 @@ urlpatterns = [
     # path("template-contexto/", prueba_contexto),
     # path("template-loader/", prueba_loader),
     # path("cursos/", cursos)
-    path("app-coder/", include("AppCoder.urls"))
+    path("app-coder/", include("AppCoder.urls")),
+    path("users/", include("Main.urls")),
 ]
