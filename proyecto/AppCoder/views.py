@@ -1,6 +1,7 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 from AppCoder.models import Curso, Profesor
 from AppCoder.forms import CursoForm, CursoModelForm
@@ -16,6 +17,7 @@ def cursos(request):
     return render(request, "index_cursos.html", {"cursos": cursos})
 
 
+@login_required
 def crear_curso(request):
 
     if request.method == "POST":
