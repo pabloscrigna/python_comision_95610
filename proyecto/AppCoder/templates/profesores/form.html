@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+    {% load static %}
+
+    {% block contenidoQueCambia %}
+
+        <h3 style="color: white;">{% if object %}Editar Profesor{% else %}Crear Profesor{% endif %}</h3>
+
+        <form method="post" style="color: white;">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+
+    {% endblock %}

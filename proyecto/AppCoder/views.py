@@ -1,6 +1,8 @@
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 
-from AppCoder.models import Curso
+from AppCoder.models import Curso, Profesor
 from AppCoder.forms import CursoForm, CursoModelForm
 
 
@@ -60,6 +62,7 @@ def eliminar_curso(request, id):
     curso.delete()
     return redirect('cursos')
 
+
 def ver_curso(request, id):
 
     curso = get_object_or_404(Curso, id=id)
@@ -67,6 +70,37 @@ def ver_curso(request, id):
     return render(request, "index_cursos.html", {"cursos": [curso]})
 
 
+class ProfesorListView(ListView):
+    model = Profesor
+    template_name = "profesores/index_profesores.html"
+    context_object_name = 'profesores'
+
+
+class ProfesorCreateView(CreateView):
+    model = Profesor
+    template_name = 'profesores/form.html'
+    fields = [ 'nombre', 'apellido', 'email', 'profesion' ]
+    success_url = reverse_lazy('profesores')
+
+
+class ProfesorDetailView(DetailView):
+    model = Profesor
+    template_name = "profesores/detalle.html"
+    context_object_name = 'profesor'
+
+
+class ProfesorUpdateView(UpdateView):
+    model = Profesor
+    template_name = "profesores/form.html"
+    fields = [ 'nombre', 'apellido', 'email' ]
+    success_url = reverse_lazy('profesores')
+
+
+class ProfesorDeleteView(DeleteView):
+    model = Profesor
+    template_name = "profesores/confirm_delete.html"
+    success_url = reverse_lazy('profesores')
+    
 
 # def crear_curso(request):
 # 
