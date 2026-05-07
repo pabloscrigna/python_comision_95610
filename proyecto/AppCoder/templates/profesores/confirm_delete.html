@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+    {% load static %}
+
+    {% block contenidoQueCambia %}
+        <h3 style="color: white;">Eliminar Profesor</h3>
+
+        <p style="color: white;">Estas seguro que queres eliminar a {{ object }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmar</button>
+        </form>
+    {% endblock %}

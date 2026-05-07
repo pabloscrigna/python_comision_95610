@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+    {% load static %}
+
+    {% block contenidoQueCambia %}
+        <h3 style="color:white;">PROFESORES</h3>
+
+        {% if profesores %}
+        <table style="width: 100%; border-collapse: collapse; color: white;">
+            <thead>
+                <tr style="border-bottom: 1px solid white;">
+                    <th style="text-align:left; padding: 8px;">Nombre</th>
+                    <th style="text-align:left; padding: 8px;">Apellido</th>
+                    <th style="text-align:left; padding: 8px;">Email</th>
+                    <th style="text-align:left; padding: 8px;">Profesión</th>
+                    <th style="text-align:left; padding: 8px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profesor in profesores %}
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <td style="padding: 8px;">{{ profesor.nombre }}</td>
+                        <td style="padding: 8px;">{{ profesor.apellido }}</td>
+                        <td style="padding: 8px;">{{ profesor.email }}</td>
+                        <td style="padding: 8px;">{{ profesor.profesion }}</td>
+                        <td style="padding: 8px;"><a href="{% url 'ver_profesor' profesor.pk %}" class="btn btn-info btn-sm">Ver</a></td>
+                        <td style="padding: 8px;"><a href="{% url 'editar_profesor' profesor.pk %}" class="btn btn-warning btn-sm">Editar</a></td>
+                        <td style="padding: 8px;"><a href="{% url 'eliminar_profesor' profesor.pk %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>        
+        {% else %}
+            <p>No hay profesores disponibles</p>
+        {% endif %}
+
+        <br>
+        <br>
+        <a href="{% url 'crear_profesor' %}" style="color: white;">Crear profesor</a>
+
+    {% endblock %}

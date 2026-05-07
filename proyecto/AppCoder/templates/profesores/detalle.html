@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+    {% load static %}
+
+    {% block contenidoQueCambia %}
+        <h3 style="color:white;">Detalle de un profesor</h3>
+
+            <table style="width: 100%; border-collapse: collapse; color: white;">
+            <thead>
+                <tr style="border-bottom: 1px solid white;">
+                    <th style="text-align:left; padding: 8px;">Nombre</th>
+                    <th style="text-align:left; padding: 8px;">Apellido</th>
+                    <th style="text-align:left; padding: 8px;">Email</th>
+                    <th style="text-align:left; padding: 8px;">Profesión</th>
+                    <th style="text-align:left; padding: 8px;">Fecha Alta</th>
+                    <th style="text-align:left; padding: 8px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <td style="padding: 8px;">{{ profesor.nombre }}</td>
+                        <td style="padding: 8px;">{{ profesor.apellido }}</td>
+                        <td style="padding: 8px;">{{ profesor.email }}</td>
+                        <td style="padding: 8px;">{{ profesor.profesion }}</td>
+                        <td style="padding: 8px;">{{ profesor.fecha_creacion }}</td>
+                        <td style="padding: 8px;"><a href="{% url 'editar_profesor' profesor.pk %}" class="btn btn-warning btn-sm">Editar</a></td>
+                        <td style="padding: 8px;"><a href="{% url 'eliminar_profesor' profesor.pk %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    </tr>
+            </tbody>
+        </table> 
+        <br>
+        <br>
+        <a href="{% url 'profesores' %}" style="color: white;">Volver</a>       
+    {% endblock %}
